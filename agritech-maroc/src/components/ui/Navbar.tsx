@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Leaf } from 'lucide-react'
+import Image from 'next/image'
+import { Menu, X } from 'lucide-react'
 
 const links = [
   { label: 'Solution',  href: '#solution' },
@@ -18,10 +19,23 @@ export default function Navbar() {
       <div className="container-max section-padding">
         <div className="flex items-center justify-between h-16">
 
-          {/* Logo : vert fluo + texte navy */}
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl text-navy-700">
-            <Leaf className="w-6 h-6 text-fluo-500" />
-            AgroSource
+          {/* Logo image + nom */}
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/images/logo.png"
+              alt="Land to Life logo"
+              width={38}
+              height={38}
+              className="object-contain"
+            />
+            <div className="flex flex-col leading-tight">
+              <span className="font-extrabold text-navy-700 text-base tracking-wide uppercase">
+                Land to Life
+              </span>
+              <span className="text-[10px] text-ocean-500 font-medium tracking-widest uppercase">
+                A Reason to Exist
+              </span>
+            </div>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

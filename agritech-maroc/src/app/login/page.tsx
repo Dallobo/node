@@ -2,17 +2,18 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Leaf, Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail]     = useState('')
+  const [email, setEmail]       = useState('')
   const [password, setPassword] = useState('')
-  const [showPwd, setShowPwd] = useState(false)
-  const [error, setError]     = useState('')
-  const [loading, setLoading] = useState(false)
+  const [showPwd, setShowPwd]   = useState(false)
+  const [error, setError]       = useState('')
+  const [loading, setLoading]   = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,19 +33,32 @@ export default function LoginPage() {
     'w-full px-4 py-3 rounded-xl border border-gray-200 text-navy-700 placeholder-navy-700/30 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-500/20 outline-none transition'
 
   return (
-    /* Fond : bleu océan foncé → dégradé */
     <div className="min-h-screen bg-gradient-to-br from-ocean-900 via-ocean-700 to-ocean-500 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Logo : blanc sur fond bleu */}
+
+        {/* Logo centré */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-white font-bold text-2xl">
-            <Leaf className="w-7 h-7 text-fluo-400" />
-            AgroSource
+          <Link href="/" className="inline-flex flex-col items-center gap-2">
+            <Image
+              src="/images/logo.png"
+              alt="Land to Life"
+              width={72}
+              height={72}
+              className="object-contain drop-shadow-lg"
+            />
+            <div>
+              <p className="font-extrabold text-white text-xl tracking-widest uppercase">
+                Land to Life
+              </p>
+              <p className="text-fluo-300 text-xs tracking-[0.3em] uppercase mt-0.5">
+                A Reason to Exist
+              </p>
+            </div>
           </Link>
-          <p className="text-ocean-200 mt-2">Espace investisseur</p>
+          <p className="text-ocean-200 mt-3 text-sm">Espace investisseur</p>
         </div>
 
-        {/* Card : fond blanc, texte navy */}
+        {/* Card blanche */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <h1 className="text-2xl font-bold text-navy-700 mb-6">Connexion</h1>
 
@@ -65,13 +79,9 @@ export default function LoginPage() {
               <div className="relative">
                 <input id="password" type={showPwd ? 'text' : 'password'} required value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className={`${inputCls} pr-11`} />
-                <button
-                  type="button"
-                  onClick={() => setShowPwd(!showPwd)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-navy-700/40 hover:text-navy-700"
-                >
+                  placeholder="••••••••" className={`${inputCls} pr-11`} />
+                <button type="button" onClick={() => setShowPwd(!showPwd)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-navy-700/40 hover:text-navy-700">
                   {showPwd ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
@@ -81,12 +91,8 @@ export default function LoginPage() {
               <div className="text-red-600 text-sm bg-red-50 rounded-xl px-4 py-3">{error}</div>
             )}
 
-            {/* Bouton : fond bleu océan → texte blanc */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
-            >
+            <button type="submit" disabled={loading}
+              className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed">
               {loading ? 'Connexion...' : 'Se connecter'}
             </button>
           </form>
@@ -101,7 +107,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Lien retour : blanc sur fond bleu */}
         <p className="text-center text-ocean-200 text-xs mt-6">
           <Link href="/" className="hover:text-white transition-colors">
             ← Retour au site

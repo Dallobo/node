@@ -1,33 +1,45 @@
-import { Droplets, Sprout, Package, Recycle } from 'lucide-react'
+import { Droplets, Sprout, Bug, Package, Recycle } from 'lucide-react'
 
 const steps = [
   {
     icon: Droplets,
     iconBg: 'bg-ocean-500',
-    title: "Captation d'eau atmosphérique",
+    tag: 'Eau',
+    title: "Gestion de l'eau",
     description:
-      "Nos collecteurs extraient jusqu'à 100 litres d'eau par jour depuis l'air ambiant — même en zone aride — sans dépendre des pluies ni des forages.",
+      "Nos collecteurs extraient jusqu'a 100 litres d'eau par jour depuis l'air ambiant, sans dependre des pluies ni des forages profonds.",
   },
   {
     icon: Sprout,
     iconBg: 'bg-fluo-500',
-    title: 'Agriculture régénérative',
+    tag: 'Sol',
+    title: 'Regeneration des sols',
     description:
-      'Techniques de permaculture, paillage, et cultures compagnes pour restaurer la fertilité des sols tout en maximisant les rendements avec un minimum d\'intrants.',
+      "Permaculture, paillage et cultures compagnes pour restaurer la fertilite des sols tout en maximisant les rendements avec un minimum d'intrants chimiques.",
+  },
+  {
+    icon: Bug,
+    iconBg: 'bg-ocean-500',
+    tag: 'Biodiversite',
+    title: 'Biodiversite',
+    description:
+      "Creation d'ecosystemes vivants : haies melliferes, corridors ecologiques, insectes auxiliaires et micro-organismes benefiques du sol.",
   },
   {
     icon: Package,
-    iconBg: 'bg-ocean-500',
-    title: 'Production diversifiée',
+    iconBg: 'bg-fluo-500',
+    tag: 'Production',
+    title: 'Production durable',
     description:
-      'Fruits, légumes, miel d\'abeilles et lombricompost — des productions complémentaires qui génèrent des revenus tout au long de l\'année.',
+      "Fruits, legumes, miel d'abeilles et lombricompost — des productions complementaires qui generent des revenus tout au long de l'annee.",
   },
   {
     icon: Recycle,
-    iconBg: 'bg-fluo-500',
-    title: 'Valorisation des déchets',
+    iconBg: 'bg-ocean-500',
+    tag: 'Economie circulaire',
+    title: 'Ecosystemes circulaires',
     description:
-      'Zéro déchet : les résidus végétaux alimentent les lombrics qui produisent le compost qui nourrit les cultures. Un cycle fermé et rentable.',
+      "Zero dechet : les residus vegetaux alimentent les lombrics qui produisent le compost qui nourrit les cultures. Un cycle ferme et rentable.",
   },
 ]
 
@@ -37,33 +49,32 @@ export default function Solution() {
       <div className="container-max section-padding">
         <div className="text-center mb-16">
           <span className="text-ocean-500 font-semibold text-sm uppercase tracking-wider">
-            Notre solution
+            Notre approche
           </span>
           <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-navy-700">
-            L&apos;agriculture du futur, aujourd&apos;hui
+            5 piliers pour transformer la terre
           </h2>
           <p className="mt-4 text-lg text-navy-700/70 max-w-2xl mx-auto">
-            Une approche systémique qui combine technologie et nature pour rendre l&apos;agriculture profitable dans des zones jusque-là inexploitables.
+            Une approche systemique qui combine technologie et nature pour rendre
+            l&apos;agriculture profitable dans des zones jusqu&apos;ici inexploitables.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {steps.map(({ icon: Icon, iconBg, title, description }, i) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {steps.map(({ icon: Icon, iconBg, tag, title, description }, i) => (
             <div
               key={title}
-              className="flex gap-5 p-8 rounded-2xl bg-white border border-gray-100 hover:border-ocean-300 hover:shadow-md transition-all duration-200"
+              className={`flex flex-col gap-4 p-8 rounded-2xl bg-white border border-gray-100 hover:border-ocean-300 hover:shadow-md transition-all duration-200
+                ${i === 4 ? 'md:col-span-2 lg:col-span-1' : ''}`}
             >
-              {/* Icône : fond bleu ou vert fluo → texte blanc */}
-              <div className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center ${iconBg}`}>
-                <Icon className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-xs font-bold text-ocean-400">0{i + 1}</span>
-                  <h3 className="text-lg font-semibold text-navy-700">{title}</h3>
+              <div className="flex items-center gap-3">
+                <div className={`w-11 h-11 shrink-0 rounded-xl flex items-center justify-center ${iconBg}`}>
+                  <Icon className="w-5 h-5 text-white" />
                 </div>
-                <p className="text-navy-700/70 leading-relaxed">{description}</p>
+                <span className="text-xs font-bold text-ocean-400 uppercase tracking-wider">{tag}</span>
               </div>
+              <h3 className="text-lg font-semibold text-navy-700">{title}</h3>
+              <p className="text-navy-700/70 leading-relaxed text-sm">{description}</p>
             </div>
           ))}
         </div>
