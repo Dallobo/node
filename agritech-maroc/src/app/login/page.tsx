@@ -8,10 +8,10 @@ import { Leaf, Eye, EyeOff } from 'lucide-react'
 
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState('')
+  const [email, setEmail]     = useState('')
   const [password, setPassword] = useState('')
   const [showPwd, setShowPwd] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError]     = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,54 +28,49 @@ export default function LoginPage() {
     }
   }
 
+  const inputCls =
+    'w-full px-4 py-3 rounded-xl border border-gray-200 text-navy-700 placeholder-navy-700/30 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-500/20 outline-none transition'
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-900 via-brand-800 to-sky-700 flex items-center justify-center p-4">
+    /* Fond : bleu océan foncé → dégradé */
+    <div className="min-h-screen bg-gradient-to-br from-ocean-900 via-ocean-700 to-ocean-500 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        {/* Logo : blanc sur fond bleu */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 text-white font-bold text-2xl">
-            <Leaf className="w-7 h-7" />
+            <Leaf className="w-7 h-7 text-fluo-400" />
             AgroSource
           </Link>
-          <p className="text-brand-200 mt-2">Espace investisseur</p>
+          <p className="text-ocean-200 mt-2">Espace investisseur</p>
         </div>
 
+        {/* Card : fond blanc, texte navy */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-6">Connexion</h1>
+          <h1 className="text-2xl font-bold text-navy-700 mb-6">Connexion</h1>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
+              <label className="block text-sm font-medium text-navy-700 mb-1.5" htmlFor="email">
                 Adresse email
               </label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={email}
+              <input id="email" type="email" required value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="vous@exemple.com"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition"
-              />
+                placeholder="vous@exemple.com" className={inputCls} />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="password">
+              <label className="block text-sm font-medium text-navy-700 mb-1.5" htmlFor="password">
                 Mot de passe
               </label>
               <div className="relative">
-                <input
-                  id="password"
-                  type={showPwd ? 'text' : 'password'}
-                  required
-                  value={password}
+                <input id="password" type={showPwd ? 'text' : 'password'} required value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 pr-11 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition"
-                />
+                  className={`${inputCls} pr-11`} />
                 <button
                   type="button"
                   onClick={() => setShowPwd(!showPwd)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-navy-700/40 hover:text-navy-700"
                 >
                   {showPwd ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -86,6 +81,7 @@ export default function LoginPage() {
               <div className="text-red-600 text-sm bg-red-50 rounded-xl px-4 py-3">{error}</div>
             )}
 
+            {/* Bouton : fond bleu océan → texte blanc */}
             <button
               type="submit"
               disabled={loading}
@@ -96,16 +92,17 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-6 pt-6 border-t border-gray-100 text-center">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-navy-700/60">
               Pas encore de compte ?{' '}
-              <a href="#contact" className="text-brand-600 hover:text-brand-700 font-medium">
+              <a href="#contact" className="text-ocean-500 hover:text-ocean-600 font-medium">
                 Contactez-nous
               </a>
             </p>
           </div>
         </div>
 
-        <p className="text-center text-brand-300 text-xs mt-6">
+        {/* Lien retour : blanc sur fond bleu */}
+        <p className="text-center text-ocean-200 text-xs mt-6">
           <Link href="/" className="hover:text-white transition-colors">
             ← Retour au site
           </Link>

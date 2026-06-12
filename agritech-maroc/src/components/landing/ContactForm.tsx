@@ -8,18 +8,12 @@ type FormState = 'idle' | 'loading' | 'success' | 'error'
 export default function ContactForm() {
   const [state, setState] = useState<FormState>('idle')
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    investment_intent: '',
-    message: '',
+    name: '', email: '', phone: '', investment_intent: '', message: '',
   })
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
+  ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,75 +34,55 @@ export default function ContactForm() {
   if (state === 'success') {
     return (
       <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
-        <CheckCircle className="w-16 h-16 text-brand-500" />
-        <h3 className="text-2xl font-bold text-gray-900">Message envoyé !</h3>
-        <p className="text-gray-600 max-w-md">
+        {/* Icône sur fond vert fluo → blanc */}
+        <div className="w-16 h-16 bg-fluo-500 rounded-full flex items-center justify-center">
+          <CheckCircle className="w-9 h-9 text-white" />
+        </div>
+        <h3 className="text-2xl font-bold text-navy-700">Message envoyé !</h3>
+        <p className="text-navy-700/70 max-w-md">
           Merci pour votre intérêt. Notre équipe vous contactera dans les 48 heures.
         </p>
       </div>
     )
   }
 
+  const inputCls =
+    'w-full px-4 py-3 rounded-xl border border-gray-200 text-navy-700 placeholder-navy-700/30 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-500/20 outline-none transition bg-white'
+
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="name">
+          <label className="block text-sm font-medium text-navy-700 mb-1.5" htmlFor="name">
             Nom complet *
           </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Ahmed Benali"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition"
-          />
+          <input id="name" name="name" type="text" required value={form.name}
+            onChange={handleChange} placeholder="Ahmed Benali" className={inputCls} />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
+          <label className="block text-sm font-medium text-navy-700 mb-1.5" htmlFor="email">
             Email *
           </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            value={form.email}
-            onChange={handleChange}
-            placeholder="ahmed@exemple.com"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition"
-          />
+          <input id="email" name="email" type="email" required value={form.email}
+            onChange={handleChange} placeholder="ahmed@exemple.com" className={inputCls} />
         </div>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="phone">
+          <label className="block text-sm font-medium text-navy-700 mb-1.5" htmlFor="phone">
             Téléphone
           </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            value={form.phone}
-            onChange={handleChange}
-            placeholder="+212 6XX XXX XXX"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition"
-          />
+          <input id="phone" name="phone" type="tel" value={form.phone}
+            onChange={handleChange} placeholder="+212 6XX XXX XXX" className={inputCls} />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="investment_intent">
+          <label className="block text-sm font-medium text-navy-700 mb-1.5" htmlFor="investment_intent">
             Montant envisagé
           </label>
-          <select
-            id="investment_intent"
-            name="investment_intent"
-            value={form.investment_intent}
+          <select id="investment_intent" name="investment_intent" value={form.investment_intent}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition bg-white"
+            className={inputCls}
           >
             <option value="">Sélectionner...</option>
             <option value="5k-20k">5 000 – 20 000 MAD</option>
@@ -120,27 +94,23 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="message">
+        <label className="block text-sm font-medium text-navy-700 mb-1.5" htmlFor="message">
           Message *
         </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={4}
-          required
-          value={form.message}
+        <textarea id="message" name="message" rows={4} required value={form.message}
           onChange={handleChange}
           placeholder="Parlez-nous de votre intérêt pour le projet..."
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition resize-none"
+          className={`${inputCls} resize-none`}
         />
       </div>
 
       {state === 'error' && (
-        <p className="text-red-600 text-sm">
+        <p className="text-red-600 text-sm bg-red-50 rounded-xl px-4 py-3">
           Une erreur est survenue. Veuillez réessayer ou nous écrire directement.
         </p>
       )}
 
+      {/* Bouton : fond bleu océan → texte blanc */}
       <button
         type="submit"
         disabled={state === 'loading'}
@@ -150,7 +120,7 @@ export default function ContactForm() {
         <Send className="w-4 h-4" />
       </button>
 
-      <p className="text-xs text-gray-400 text-center">
+      <p className="text-xs text-navy-700/40 text-center">
         Vos données sont confidentielles et ne seront jamais partagées.
       </p>
     </form>

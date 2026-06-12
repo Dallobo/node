@@ -23,16 +23,16 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section id="probleme" className="py-24 bg-gray-50">
+    <section id="probleme" className="py-24 bg-white">
       <div className="container-max section-padding">
         <div className="text-center mb-16">
-          <span className="text-brand-600 font-semibold text-sm uppercase tracking-wider">
+          <span className="text-ocean-500 font-semibold text-sm uppercase tracking-wider">
             Le problème
           </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-gray-900">
+          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-navy-700">
             Le Maroc face à la sécheresse
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-navy-700/70 max-w-2xl mx-auto">
             Le changement climatique compromet l&apos;avenir agricole d&apos;un pays entier. Nous proposons une réponse concrète.
           </p>
         </div>
@@ -41,13 +41,14 @@ export default function Problem() {
           {problems.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md hover:border-ocean-200 transition-all duration-200"
             >
-              <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-5">
-                <Icon className="w-6 h-6 text-red-500" />
+              {/* Icône sur fond bleu océan clair → icône blanche */}
+              <div className="w-12 h-12 bg-ocean-500 rounded-xl flex items-center justify-center mb-5">
+                <Icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{title}</h3>
-              <p className="text-gray-600 leading-relaxed">{description}</p>
+              <h3 className="text-xl font-semibold text-navy-700 mb-3">{title}</h3>
+              <p className="text-navy-700/70 leading-relaxed">{description}</p>
             </div>
           ))}
         </div>

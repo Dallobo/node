@@ -9,29 +9,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
+        ocean: {
+          50:  '#e0f4fb',
+          100: '#b3e4f5',
+          200: '#7dd2ee',
+          300: '#44bfe7',
+          400: '#0fb2e3',
+          500: '#0096C7',  // ocean blue principal
+          600: '#007aab',
+          700: '#005f8a',
+          800: '#00456a',
+          900: '#002c4a',
         },
-        sky: {
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
+        fluo: {
+          300: '#69ffb8',
+          400: '#33ffaa',
+          500: '#00E676',  // vert fluo principal
+          600: '#00c463',
+          700: '#009e4f',
         },
-        earth: {
-          100: '#fef3c7',
-          200: '#fde68a',
-          600: '#d97706',
-          700: '#b45309',
+        navy: {
+          700: '#0D3B66',  // texte sur fond blanc
+          800: '#082d52',
+          900: '#041e38',
         },
       },
       fontFamily: {
@@ -42,7 +42,7 @@ const config: Config = {
       },
       keyframes: {
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '0%':   { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },

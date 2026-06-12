@@ -5,20 +5,22 @@ import Link from 'next/link'
 import { Menu, X, Leaf } from 'lucide-react'
 
 const links = [
-  { label: 'Solution', href: '#solution' },
-  { label: 'Modèle', href: '#business-model' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Solution',  href: '#solution' },
+  { label: 'Modèle',   href: '#business-model' },
+  { label: 'Contact',  href: '#contact' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="container-max section-padding">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl text-brand-700">
-            <Leaf className="w-6 h-6" />
+
+          {/* Logo : vert fluo + texte navy */}
+          <Link href="/" className="flex items-center gap-2 font-bold text-xl text-navy-700">
+            <Leaf className="w-6 h-6 text-fluo-500" />
             AgroSource
           </Link>
 
@@ -27,7 +29,7 @@ export default function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-gray-600 hover:text-brand-700 font-medium transition-colors"
+                className="text-navy-700 hover:text-ocean-500 font-medium transition-colors"
               >
                 {l.label}
               </a>
@@ -38,7 +40,7 @@ export default function Navbar() {
           </div>
 
           <button
-            className="md:hidden p-2 text-gray-600"
+            className="md:hidden p-2 text-navy-700"
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
@@ -52,7 +54,7 @@ export default function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-gray-600 hover:text-brand-700 font-medium"
+                className="text-navy-700 hover:text-ocean-500 font-medium"
                 onClick={() => setOpen(false)}
               >
                 {l.label}

@@ -4,27 +4,37 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    scroll-behavior: smooth;
-  }
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
-  }
+  :root { scroll-behavior: smooth; }
+  html  { font-family: 'Inter', system-ui, sans-serif; }
+  body  { color: #0D3B66; background: #ffffff; }
 }
 
 @layer components {
-  .section-padding {
-    @apply px-4 sm:px-6 lg:px-8;
-  }
-  .container-max {
-    @apply max-w-7xl mx-auto;
-  }
+  .section-padding { @apply px-4 sm:px-6 lg:px-8; }
+  .container-max   { @apply max-w-7xl mx-auto; }
+
+  /* Bouton principal : fond bleu océan, texte blanc */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+    @apply inline-flex items-center gap-2 px-6 py-3
+           bg-ocean-500 hover:bg-ocean-600 text-white
+           font-semibold rounded-xl transition-all duration-200
+           shadow-lg hover:shadow-xl hover:-translate-y-0.5;
   }
+
+  /* Bouton secondaire : bordure bleu océan, texte navy */
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-brand-600 text-brand-700 hover:bg-brand-50 font-semibold rounded-xl transition-all duration-200;
+    @apply inline-flex items-center gap-2 px-6 py-3
+           border-2 border-ocean-500 text-navy-700
+           hover:bg-ocean-50 font-semibold rounded-xl
+           transition-all duration-200;
   }
+
+  /* Badge vert fluo : texte blanc */
+  .badge-fluo {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold
+           bg-fluo-500 text-white;
+  }
+
   .card {
     @apply bg-white rounded-2xl shadow-sm border border-gray-100 p-6;
   }
